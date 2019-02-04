@@ -3,10 +3,12 @@ import * as Expo from 'expo';
 import React from 'react';
 import {
   Button,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 import {
@@ -16,7 +18,7 @@ import {
   Left,
   Body,
   Right,
-  Title
+  Title,
 } from 'native-base';
 
 import Hello from './Hello';
@@ -67,15 +69,18 @@ export default class App extends React.Component {
 
     return (
       <Container>
-        <Header>
-          <Left/>
-          <Body>
-            <Title>Header</Title>
-          </Body>
-          <Right />
-        </Header>
+        <View style={styles.header}>
+          <Header>
+            <Left/>
+            <Body>
+              <Title>Header</Title>
+            </Body>
+            <Right />
+          </Header>
+        </View>
         <Content padder>
           <View style={styles.container}>
+            <Hello />
             <Text>
               Tip = ${tip}
             </Text>
@@ -119,6 +124,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+  },
+  header: {
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight,
+      },
+    }),
   },
   customTip: {
     height: 40,

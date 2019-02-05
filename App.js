@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Button,
   StyleSheet,
+  Text,
   TextInput,
   View
 } from 'react-native';
@@ -63,13 +64,14 @@ export default class App extends React.Component {
               bill={this.state.inputValue}
             />
             <View style={styles.inputs}>
+              <Text>Bill Amount</Text>
               <TextInput
                 value={this.state.inputValue}
                 style={styles.input}
                 keyboardType='numeric'
                 placeholder='0.00'
-                underlineColorAndroid='white'
-                placeholderTextColor='white'
+                placeholderTextColor='#222'
+                clearButtonMode='while-editing'
                 onChangeText={(text)=> this.setState({ inputValue: text })}
               />
               <View style={styles.buttonGroup}>
@@ -89,8 +91,6 @@ export default class App extends React.Component {
                   value={(this.state.tip * 100).toString()}
                   style={styles.customTip}
                   keyboardType='numeric'
-                  underlineColorAndroid='white'
-                  placeholderTextColor='white'
                   onChangeText={customTip => this.updateCustomTip(customTip)}
                 />
               </View>
@@ -105,29 +105,28 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     height: '100%',
     width: '100%',
   },
   inputs: {
-    backgroundColor: '#212121',
+    backgroundColor: 'white',
     padding: 20,
   },
   input: {
     height: 40,
     width: '100%',
     padding: 5,
-    color: 'white',
   },
   buttonGroup: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   customTip: {
     height: 40,
-    width: 60,
+    width: 40,
     padding: 5,
-    color: 'white',
+    color: 'rgb(0, 122, 255)',
   },
 });

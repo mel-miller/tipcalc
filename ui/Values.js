@@ -30,20 +30,20 @@ const styles = StyleSheet.create({
   values: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#484848',
+    backgroundColor: '#eee',
     width: '100%',
   },
   label: {
-    color: 'white',
+    color: '#222',
   },
   tip: {
-    fontSize: 60,
-    color: 'white',
+    fontSize: 50,
+    color: '#222',
     fontWeight: 'bold',
   },
   total: {
     fontSize: 30,
-    color: 'white',
+    color: '#222',
     fontWeight: 'bold',
   },
 });

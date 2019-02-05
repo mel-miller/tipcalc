@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button,
   StyleSheet,
-  Text,
   TextInput,
   View
 } from 'react-native';
@@ -14,13 +13,14 @@ import {
 } from 'native-base';
 
 import Head from './ui/Head';
+import Values from './ui/Values';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       inputValue: '',
-      tipFactor: '',
+      tip: '',
       isReady: false,
     }
   }
@@ -41,20 +41,14 @@ export default class App extends React.Component {
   updateCustomTip(customTip) {
     if (customTip) {
       this.setState({
-        tipFactor: parseFloat(customTip) / 100,
+        tip: parseFloat(customTip) / 100,
       })
     } else {
-      this.setState({tipFactor: 0})
+      this.setState({tip: 0})
     }
   }
 
   render() {
-    let tip = 0.00;
-    if (this.state.inputValue) {
-      tip = parseFloat(this.state.inputValue) * this.state.tipFactor;
-      tip = (Math.round(tip * 100) / 100).toFixed(2);
-    }
-
     if (!this.state.isReady) {
       return <Expo.AppLoading />;
     }
@@ -64,9 +58,10 @@ export default class App extends React.Component {
         <Head />
         <Content padder>
           <View style={styles.container}>
-            <Text>
-              Tip = ${tip}
-            </Text>
+            <Values
+              tipPercent={this.state.tip}
+              bill={this.state.inputValue}
+            />
             <TextInput
               value={this.state.inputValue}
               style={styles.input}
@@ -77,18 +72,18 @@ export default class App extends React.Component {
           <View style={styles.buttonGroup}>
               <Button
                 title='10%'
-                onPress={() => this.setState({ tipFactor: 0.1 })}
+                onPress={() => this.setState({ tip: 0.1 })}
               />
               <Button
                 title='15%'
-                onPress={() => this.setState({ tipFactor: 0.15 })}
+                onPress={() => this.setState({ tip: 0.15 })}
               />
               <Button
                 title='20%'
-                onPress={() => this.setState({ tipFactor: 0.2 })}
+                onPress={() => this.setState({ tip: 0.2 })}
               />
               <TextInput
-                value={(this.state.tipFactor * 100).toString()}
+                value={(this.state.tip * 100).toString()}
                 style={styles.customTip}
                 keyboardType='numeric'
                 placeholder='25%'

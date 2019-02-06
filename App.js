@@ -13,8 +13,8 @@ import {
   Content
 } from 'native-base';
 
-import Head from './ui/Head';
-import Values from './ui/Values';
+import Head from './src/components/Head';
+import Values from './src/components/Values';
 
 export default class App extends React.Component {
   constructor() {

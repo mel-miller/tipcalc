@@ -1,4 +1,4 @@
 # tipcalc
 Tip Calculator
 
-Learning React Native byt building this app and others. 
+Learning React Native by building this app and others. 
